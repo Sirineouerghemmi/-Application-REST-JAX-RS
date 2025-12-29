@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Personnes - REST API</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-users me-2"></i>Gestion des Personnes
+            </a>
+            <div class="navbar-text ms-auto">
+                <span class="badge bg-light text-dark">
+                    <i class="fas fa-plug me-1"></i>
+                    <span id="api-status">Connexion...</span>
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5 pt-4">
+        <!-- Header -->
+        <div class="row mb-4">
+            <div class="col">
+                <h1 class="display-5 text-center">
+                    <i class="fas fa-database text-primary"></i>
+                    Application REST JAX-RS
+                </h1>
+                <p class="text-muted text-center">
+                    Frontend consommant exclusivement l'API REST JAX-RS
+                </p>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="row">
+            <!-- Left Column: Add/Edit Form -->
+            <div class="col-lg-4 mb-4">
+                <div class="card shadow">
+                    <div class="card-header bg-info text-white">
+                        <i class="fas fa-user-edit me-2"></i>Gestion Personne
+                    </div>
+                    <div class="card-body">
+                        <form id="personForm">
+                            <input type="hidden" id="personId">
+                            
+                            <div class="mb-3">
+                                <label for="name" class="form-label">
+                                    <i class="fas fa-user me-1"></i>Nom Complet
+                                </label>
+                                <input type="text" class="form-control" id="name" 
+                                       placeholder="Entrez le nom" required>
+                                <div class="form-text">Ex: Jean Dupont</div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="age" class="form-label">
+                                    <i class="fas fa-birthday-cake me-1"></i>Âge
+                                </label>
+                                <input type="number" class="form-control" id="age" 
+                                       min="1" max="120" placeholder="Entrez l'âge" required>
+                                <div class="form-text">Entre 1 et 120 ans</div>
+                            </div>
+                            
+                            <div class="d-grid gap-2">
+                                <button type="submit" id="submitBtn" class="btn btn-success">
+                                    <i class="fas fa-plus me-1"></i>Ajouter Personne
+                                </button>
+                                <button type="button" id="updateBtn" class="btn btn-warning d-none">
+                                    <i class="fas fa-edit me-1"></i>Mettre à Jour
+                                </button>
+                                <button type="button" id="cancelBtn" class="btn btn-secondary d-none">
+                                    <i class="fas fa-times me-1"></i>Annuler
+                                </button>
+                            </div>
+                        </form>
+                        
+                        <!-- Search Form -->
+                        <div class="mt-4 pt-3 border-top">
+                            <h6 class="text-muted mb-3">
+                                <i class="fas fa-search me-1"></i>Recherche
+                            </h6>
+                            <div class="input-group">
+                                <input type="text" id="searchInput" class="form-control" 
+                                       placeholder="Rechercher par nom...">
+                                <button class="btn btn-outline-primary" onclick="searchPerson()">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- API Info Card -->
+                <div class="card shadow-sm mt-4">
+                    <div class="card-header bg-secondary text-white">
+                        <i class="fas fa-info-circle me-2"></i>Informations API
+                    </div>
+                    <div class="card-body">
+                        <small>
+                            <p><strong>Base URL:</strong> <code>http://localhost/tp333/api</code></p>
+                            <p><strong>Endpoints:</strong></p>
+                            <ul class="list-unstyled">
+                                <li><code>GET /persons/all</code></li>
+                                <li><code>POST /persons/add</code></li>
+                                <li><code>PUT /persons/update</code></li>
+                                <li><code>DELETE /persons/delete/{id}</code></li>
+                            </ul>
+                            <p class="text-success mb-0">
+                                <i class="fas fa-check-circle"></i> 
+                                Communication 100% via API REST
+                            </p>
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Persons List -->
+            <div class="col-lg-8">
+                <div class="card shadow">
+                    <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+                        <span>
+                            <i class="fas fa-list me-2"></i>Liste des Personnes
+                        </span>
+                        <button class="btn btn-light btn-sm" onclick="loadAllPersons()">
+                            <i class="fas fa-sync-alt me-1"></i>Rafraîchir
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <!-- Stats -->
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <div class="stat-card bg-primary text-white p-3 rounded text-center">
+                                    <h5 id="totalPersons">0</h5>
+                                    <small>Personnes totales</small>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="stat-card bg-info text-white p-3 rounded text-center">
+                                    <h5 id="averageAge">0</h5>
+                                    <small>Âge moyen</small>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="stat-card bg-warning text-white p-3 rounded text-center">
+                                    <h5 id="youngestAge">0</h5>
+                                    <small>Plus jeune</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Loading Indicator -->
+                        <div id="loadingIndicator" class="text-center py-5">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Chargement...</span>
+                            </div>
+                            <p class="text-muted mt-2">Chargement des données...</p>
+                        </div>
+                        
+                        <!-- Persons Table -->
+                        <div id="personsTableContainer" class="table-responsive" style="display: none;">
+                            <table class="table table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nom</th>
+                                        <th>Âge</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="personsTableBody">
+                                    <!-- Persons will be loaded here dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <!-- Empty State -->
+                        <div id="emptyState" class="text-center py-5" style="display: none;">
+                            <i class="fas fa-users fa-3x text-muted mb-3"></i>
+                            <h5 class="text-muted">Aucune personne trouvée</h5>
+                            <p>Ajoutez votre première personne en utilisant le formulaire</p>
+                        </div>
+                        
+                        <!-- Error State -->
+                        <div id="errorState" class="text-center py-5" style="display: none;">
+                            <i class="fas fa-exclamation-triangle fa-3x text-danger mb-3"></i>
+                            <h5 class="text-danger">Erreur de connexion</h5>
+                            <p>Impossible de se connecter à l'API REST</p>
+                            <button class="btn btn-primary" onclick="loadAllPersons()">
+                                <i class="fas fa-redo me-1"></i>Réessayer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- API Response Monitor -->
+                <div class="card shadow-sm mt-4">
+                    <div class="card-header bg-dark text-white">
+                        <i class="fas fa-terminal me-2"></i>Journal des Requêtes API
+                        <button class="btn btn-sm btn-outline-light float-end" onclick="clearLog()">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                    <div class="card-body p-0">
+                        <div id="apiLog" class="p-3" style="max-height: 200px; overflow-y: auto; font-family: monospace; font-size: 0.85em;">
+                            <div class="text-muted">Les requêtes API s'afficheront ici...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light mt-5 py-3 border-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0 text-muted">
+                        <i class="fas fa-code me-1"></i>
+                        Frontend REST - Consommation exclusive d'API JAX-RS
+                    </p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0 text-muted">
+                        <i class="fas fa-server me-1"></i>
+                        Backend: JAX-RS / JDBC / MySQL
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,371 @@
+/* Modern Gradient Theme: Blue, Gray, Purple - Boutons Actions centrés avec espacement */
+:root {
+    /* Blue Gradients - Like "Add Person" button */
+    --blue-gradient: linear-gradient(135deg, #17a2b8 0%, #0dcaf0 100%);
+    --blue-light: #0dcaf0;
+    --blue-dark: #17a2b8;
+   
+    /* Metal Gray Gradients */
+    --metal-gradient: linear-gradient(135deg, #5a5a6d 0%, #8a8a9e 25%, #b0b0c2 50%, #8a8a9e 75%, #5a5a6d 100%);
+   
+    /* Stats Gradients */
+    --stats-dark-gradient: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%);
+    --stats-medium-gradient: linear-gradient(135deg, #1976d2 0%, #2196f3 100%);
+    --stats-light-gradient: linear-gradient(135deg, #2196f3 0%, #64b5f6 100%);
+   
+    /* Success Colors - Green */
+    --success-gradient: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+   
+    /* Warning Colors */
+    --warning-gradient: linear-gradient(135deg, #fd7e14 0%, #ffc107 100%);
+   
+    /* Danger Colors */
+    --danger-gradient: linear-gradient(135deg, #dc3545 0%, #e83e8c 100%);
+   
+    /* Background Colors */
+    --body-bg: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    --card-bg: rgba(255, 255, 255, 0.95);
+
+    /* Nouveaux dégradés pour boutons Mettre à Jour et Annuler */
+    --dark-blue-gradient: linear-gradient(135deg, #0d47a1 0%, #1565c0 80%, #1e88e5 100%);
+    --metallic-gray-gradient: linear-gradient(135deg, #5a6075 0%, #7a8299 30%, #9da5bc 60%, #7a8299 80%, #5a6075 100%);
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--body-bg);
+    background-attachment: fixed;
+    padding-top: 70px;
+    color: #343a40;
+}
+/* Navigation Bar - Blue Gradient */
+.navbar {
+    background: var(--blue-gradient) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.navbar-brand {
+    font-weight: 600;
+    color: white !important;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+/* Tous les en-têtes de cartes avec Blue Gradient */
+.card-header.bg-primary,
+.card-header.bg-info,
+.card-header.bg-secondary,
+.card-header.bg-success {
+    background: var(--blue-gradient) !important;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    border-bottom: none;
+}
+/* Card Styling */
+.card {
+    border: none;
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+.card-header {
+    border-radius: 15px 15px 0 0 !important;
+    font-weight: 600;
+    border-bottom: none;
+    padding: 1.2rem 1.5rem;
+}
+/* Stats Cards avec Blue Gradients */
+.stat-card {
+    border-radius: 12px !important;
+    overflow: hidden;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 1.2rem;
+    text-align: center;
+}
+.stat-card.bg-primary {
+    background: var(--stats-dark-gradient) !important;
+}
+.stat-card.bg-info {
+    background: var(--stats-medium-gradient) !important;
+}
+.stat-card.bg-warning {
+    background: var(--stats-light-gradient) !important;
+}
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+/* Form Styling avec focus bleu */
+.form-control, .form-select {
+    border-radius: 10px;
+    border: 1px solid #dee2e6;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+}
+.form-control:focus, .form-select:focus {
+    border-color: var(--blue-light);
+    box-shadow: 0 0 0 0.25rem rgba(13, 202, 240, 0.25);
+}
+/* Button Styling général */
+.btn {
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+.btn:hover {
+    transform: translateY(-2px);
+}
+/* Add Button - Blue Gradient */
+.btn-success, #submitBtn {
+    background: var(--blue-gradient) !important;
+    border: none;
+    color: white;
+}
+.btn-success:hover, #submitBtn:hover {
+    background: linear-gradient(135deg, #0dcaf0 0%, #17a2b8 100%) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(13, 202, 240, 0.3);
+}
+/* Search Button */
+.btn-outline-primary {
+    background: var(--blue-gradient) !important;
+    border: none;
+    color: white !important;
+}
+.btn-outline-primary:hover {
+    background: linear-gradient(135deg, #0dcaf0 0%, #17a2b8 100%) !important;
+    opacity: 0.9;
+}
+/* Bouton "Mettre à Jour" - Bleu foncé dégradé */
+#updateBtn.btn-warning {
+    background: var(--dark-blue-gradient) !important;
+    border: none;
+    color: white !important;
+    font-weight: 600;
+}
+#updateBtn.btn-warning:hover {
+    background: linear-gradient(135deg, #1565c0 0%, #1e88e5 80%, #42a5f5 100%) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(13, 71, 161, 0.4);
+}
+/* Bouton "Annuler" - Gris métallisé dégradé */
+#cancelBtn.btn-secondary {
+    background: var(--metallic-gray-gradient) !important;
+    border: none;
+    color: white !important;
+    font-weight: 600;
+}
+#cancelBtn.btn-secondary:hover {
+    background: linear-gradient(135deg, #6a7085 0%, #8a92a9 30%, #adb5cc 60%, #8a92a9 80%, #6a7085 100%) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(90, 96, 117, 0.4);
+}
+
+/* En-tête du tableau avec coins arrondis */
+.table thead {
+    border-radius: 15px !important;
+    overflow: hidden;
+}
+.table thead th {
+    background: var(--metal-gradient) !important;
+    color: white;
+    border: none !important;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    padding: 1rem;
+}
+.table thead th:first-child {
+    border-radius: 15px 0 0 0 !important;
+}
+.table thead th:last-child {
+    border-radius: 0 15px 0 0 !important;
+}
+.table thead th::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.7s;
+}
+.table thead th:hover::before {
+    left: 100%;
+}
+.table {
+    border-radius: 15px !important;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+.table tbody tr {
+    transition: background-color 0.2s ease;
+}
+.table tbody tr:hover {
+    background-color: rgba(23, 162, 184, 0.05);
+}
+.table tbody td {
+    vertical-align: middle;
+    border-color: #dee2e6;
+}
+
+/* NOUVEAU : Colonne Actions - Boutons centrés verticalement et horizontalement avec bon espacement */
+.table tbody td:last-child {
+    text-align: center !important;
+    vertical-align: middle !important;
+    padding: 1rem 0.5rem !important;
+}
+
+/* Boutons d'action ronds avec espacement généreux */
+.action-btn {
+    width: 42px !important;
+    height: 42px !important;
+    border-radius: 50% !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 12px !important; /* Espace important entre les boutons */
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+.action-btn.btn-outline-primary {
+    background: var(--stats-medium-gradient) !important;
+}
+.action-btn.btn-outline-danger {
+    background: var(--danger-gradient) !important;
+}
+.action-btn.btn-outline-info {
+    background: var(--blue-gradient) !important;
+}
+.action-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 50%;
+}
+.action-btn:hover::after {
+    opacity: 1;
+}
+.action-btn:hover {
+    transform: scale(1.2) rotate(10deg);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Age Badges - Blue Gradient */
+.badge.bg-info {
+    background: var(--blue-gradient) !important;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-weight: 500;
+}
+/* API Log */
+#apiLog {
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    border-radius: 0 0 12px 12px;
+}
+#apiLog .success {
+    color: #20c997;
+}
+#apiLog .error {
+    color: #e83e8c;
+}
+#apiLog .info {
+    color: #0dcaf0;
+}
+#apiLog .warning {
+    color: #ffc107;
+}
+/* Loading Spinner */
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+/* Footer */
+footer {
+    background: linear-gradient(135deg, #495057 0%, #6c757d 100%);
+    color: rgba(255, 255, 255, 0.8);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    body {
+        padding-top: 60px;
+    }
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .card-body {
+        padding: 1rem;
+    }
+    .btn {
+        padding: 8px 16px;
+    }
+    .table-responsive {
+        font-size: 0.9em;
+    }
+    .action-btn {
+        width: 38px !important;
+        height: 38px !important;
+        font-size: 1rem;
+        margin: 0 8px !important; /* Un peu moins d'espace sur mobile */
+    }
+    .table thead th:first-child {
+        border-radius: 12px 0 0 0 !important;
+    }
+    .table thead th:last-child {
+        border-radius: 0 12px 0 0 !important;
+    }
+    .table {
+        border-radius: 12px !important;
+    }
+}
+/* Animation for alerts */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.fade-in {
+    animation: fadeIn 0.3s ease forwards;
+}
+/* Custom Scrollbar with Gradient */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 6px;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--blue-gradient);
+    border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #0dcaf0 0%, #17a2b8 100%);
+}
