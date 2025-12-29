@@ -124,24 +124,6 @@ Validation : Validation des formulaires avant envoi
 2. L'URL de base doit être: `http://localhost:8080/tp333`
 3. Vérifiez que les endpoints API sont accessibles:
    - `http://localhost:8080/tp333/api/persons/health`
-
-### Étape 2: Exécuter le frontend
-#### Option A: Sans serveur web
-1. Ouvrez simplement `index.html` dans votre navigateur
-2. Le frontend se connectera automatiquement au backend
-
-#### Option B: Avec un serveur web local
-```bash
-# Python 3
-python -m http.server 8000
-
-# Node.js avec http-server
-npx http-server
-
-# PHP
-php -S localhost:8000
-
-Étape 3: Utilisation
 Ouvrez votre navigateur à http://localhost:8000 (ou double-cliquez sur index.html)
 
 Vérifiez que l'indicateur API indique "Connecté"
