@@ -49,6 +49,8 @@ tp333-frontend/
 ├── script.js # Logique JavaScript
 ├── README.md # Documentation
 
+### Dépot sur github 
+https://github.com/Sirineouerghemmi/-Application-REST-JAX-RS.git
 
 ## 🚀 Installation et exécution
 
@@ -131,3 +133,5 @@ Vérifiez que l'indicateur API indique "Connecté"
 Utilisez le formulaire pour ajouter des personnes
 
 Utilisez les boutons d'action pour modifier/supprimer
+
+
